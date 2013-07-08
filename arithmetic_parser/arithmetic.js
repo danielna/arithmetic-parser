@@ -35,17 +35,23 @@
     };
 
     Interpreter.prototype.combine = function(arr1, arr2){
+        // console.log("arr1:", arr1);
+        // console.log("arr2:", arr2);
         var returnArray = [];
         if (this.operators.indexOf(arr1[1]) <= this.operators.indexOf(arr2[1])) {
             returnArray = this.getCalculatedValue(arr1, arr2, true);
         } else {
             returnArray = this.getCalculatedValue(arr2, arr1);
         }
+        // console.log("returnArray:", returnArray);
         return returnArray;
     };
 
     Interpreter.prototype.getCalculatedValue = function(arr1, arr2, leftToRight){
         var calculatedValue = eval(arr1[0] + arr1[1] + arr1[2]);
+        if (arr1[1] === "^") {
+            calculatedValue = Math.pow(arr1[0], arr1[2]);
+        }
         if (leftToRight) {
             return [calculatedValue + "", arr2[1], arr2[2]];
         }
@@ -105,5 +111,7 @@
     exports.Interpreter = Interpreter;
 })(this);
 
-var i = new Interpreter("6/2+3*4/2+7-2*6"); // should be 4
+var pattern;
+pattern = "6/2+3^3*4/2+7-2*6"; // should be 52
+var i = new Interpreter(pattern); // should be 4
 i.go();
