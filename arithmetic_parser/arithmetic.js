@@ -30,7 +30,7 @@
         this.calculate();
         } else {
             var sum = eval(this.tokens[0] + this.tokens[1] + this.tokens[2]);
-            return console.log("sum:", sum);;
+            return console.log("sum:", sum);
         }
     };
 
@@ -105,5 +105,5 @@
     exports.Interpreter = Interpreter;
 })(this);
 
-var i = new Interpreter("1*6*4*2");
+var i = new Interpreter("6/2+3*4/2+7-2*6"); // should be 4
 i.go();
