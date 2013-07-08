@@ -113,5 +113,5 @@
 
 var pattern;
 pattern = "6/2+3^3*4/2+7-2*6"; // should be 52
-var i = new Interpreter(pattern); // should be 4
+var i = new Interpreter(pattern);
 i.go();
