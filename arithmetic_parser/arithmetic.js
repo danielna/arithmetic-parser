@@ -18,6 +18,7 @@
         return this.tokens;
     };
 
+    // Recursive function that calculates replacement tokens starting from left
     Interpreter.prototype.calculate = function() {
         if (this.tokens.length > 3){
         var subset = this.tokens.slice(0, 5),
@@ -32,6 +33,7 @@
         }
     };
 
+    // Determine logic of if the right or left-side of the equation should be calculated
     Interpreter.prototype.combine = function(arr1, arr2){
         // console.log("arr1:", arr1);
         // console.log("arr2:", arr2);
@@ -45,6 +47,7 @@
         return returnArray;
     };
 
+    // Performs calculation of three tokens
     Interpreter.prototype.getCalculatedValue = function(arr1, arr2, leftToRight){
         var calculatedValue = eval(arr1[0] + arr1[1] + arr1[2]);
         if (arr1[1] === "^") {
