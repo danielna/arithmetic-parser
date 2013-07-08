@@ -8,8 +8,6 @@
         this.str = str;
         this.tokens = [];
         this.operators = ["^", "*", "/", "+", "-"]; // ordered by preference
-        this.parsedTokens = [];
-        this.newTokens = [];
     };
 
     // Remove spaces
