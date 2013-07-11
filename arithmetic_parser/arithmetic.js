@@ -115,15 +115,55 @@
         console.log("stack:", this.stack);
     };
 
+    Interpreter.prototype.calculate = function() {
+        var self = this,
+            output;
+
+        var parseRPN = function(arr) {
+            var arrTemp = [];
+
+            if (arr.length === 1) {
+                return arr[0];
+            }
+
+            for (var i = 0; i < arr.length; i++) {
+                var token = arr[i];
+
+                if (typeof token !== "number") {
+
+                    var n2 = arrTemp.pop(),
+                        n1 = arrTemp.pop();
+
+                    // console.log("n1:", n1);
+                    // console.log("n2:", n2);
+                    // // console.log("arrTemp2:", arrTemp);
+
+                    answer = self.functions[token](n1, n2);
+                    arrTemp.push(answer);
+                    // console.log("arrTemp3:", arrTemp);
+                    arrTemp = arrTemp.concat(arr.slice(i+1));
+                    break;
+                } else {
+                    arrTemp.push(token);
+                }
+            }
+            return parseRPN(arrTemp);
+        };
+
+        return parseRPN(this.outputQueue);
+
+    };
+
     Interpreter.prototype.go = function() {
         this.cleanString();
         this.interpret(this.tokens);
+        return this.calculate();
     };
 
     exports.Interpreter = Interpreter;
 })(this);
 
 var pattern;
-pattern = "(6+2)^3-6+2"; // should be 52
+pattern = "(1+2)^3-6+2";
 var i = new Interpreter(pattern);
-i.go();
+console.log("the answer to " + pattern + " is " + i.go());
