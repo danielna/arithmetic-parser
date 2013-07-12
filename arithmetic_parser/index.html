@@ -1,11 +1,48 @@
 <!doctype html>
+<head>
+    <title>Awesome Arithmetic Parser</title>
+    <style>
+    body {
+        text-align: center;
+        background-color: #f2f2f2;
+        font-family: 'Helvetica Neue';
+    }
+    .big {
+        font-size: 24px;
+        font-weight: bold;
+    }
+    </style>
+</head>
 <body>
-    <div id="stuff">
-        
+    <h1>Awesome Arithmetic Parser</h1>
+    <p>Formulas can include parentheses, digits, and the following symbols:</p>
+    <p>^, *, /, +, -</p>
+    <div>
+        <span class="label">Please type in an arithmetic formula here:</span>
+        <input type="text" id="formula"/>
+        <input type="submit" id="submit" onClick="window.calculateFormula();"/>
     </div>
-    <h1 id="sum">
-        
-    </h1>
+    <hr/>
+    <div>
+        <p>Original Formula:</p>
+        <p id="original" class="big"></p>
+    </div>
+    <hr/>
+    <div>
+        <p>
+            The Reverse Polish Notation of your supplied formula is:
+        </p>
+        <p id="RPN" class="big">
+        </p>
+    </div>
+    <hr/>
+    <div>
+        <p>
+            The sum is:
+        </p>
+        <p id="sum" class="big">
+        </p>
+    </div>
     <script src="arithmetic.js"></script>
 </body>
 </html>

@@ -5,7 +5,7 @@
 // Use the Shunting-Yard algorithm: http://en.wikipedia.org/wiki/Shunting-yard_algorithm
 // which creates a mathematical representation of the tokens in Reverse Polish Notation: http://en.wikipedia.org/wiki/Reverse_Polish_notation
 
-(function(exports) {
+(function(exports, document) {
 
     var Interpreter = function(str) {
         var self = this;
@@ -101,6 +101,7 @@
         for (var j = 0; j <= this.stack.length; j++){
             this.outputQueue.push(this.stack.pop());
         }
+        document.getElementById("RPN").innerHTML = this.outputQueue.join(" ").toString();
     };
 
     Interpreter.prototype.calculate = function() {
@@ -144,9 +145,15 @@
 
     exports.Interpreter = Interpreter;
 
-})(this);
+})(this, document);
 
-var pattern;
-pattern = "(1+2)^3-6+2";
-var i = new Interpreter(pattern);
-console.log("the answer to " + pattern + " is " + i.go());
+window.calculateFormula = function() {
+    var pattern = document.getElementById("formula").value;
+    document.getElementById("original").innerHTML = pattern;
+    // var pattern = "(1+2)^3-6+2";
+    var i = new Interpreter(pattern);
+    var sum = i.go();
+    // console.log("the answer to " + pattern + " is " + sum);
+    document.getElementById("sum").innerHTML = sum;
+};
+
