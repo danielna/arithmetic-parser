@@ -116,7 +116,7 @@
         for (var j = 0; j <= this.stack.length; j++){
             this.outputQueue.push(this.stack.pop());
         }
-        
+
         document.getElementById("RPN").innerHTML = this.outputQueue.join(" ").toString();
     };
 
