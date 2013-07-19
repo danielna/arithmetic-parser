@@ -8,7 +8,6 @@
 (function(exports, document) {
 
     var Interpreter = function() {
-        var self = this;
         this.operators = {
             "^": {
                 "precedence": 4,
