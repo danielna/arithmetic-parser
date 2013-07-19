@@ -16,45 +16,43 @@
         this.operators = {
             "^": {
                 "precedence": 4,
-                "direction": "right"
+                "direction": "right",
+                "fn": function(n1, n2) {
+                    console.log("^:", n1 + "^" + n2);
+                    return Math.pow(n1, n2);
+                }
             },
             "*": {
                 "precedence": 3,
-                "direction": "left"
+                "direction": "left",
+                "fn": function(n1, n2){
+                    console.log("*:", n1 + "*" + n2);
+                    return n1*n2;
+                }
             },
             "/": {
                 "precedence": 3,
-                "direction": "left"
+                "direction": "left",
+                "fn": function(n1, n2){
+                    console.log("/:", n1 + "/" + n2);
+                    return n1/n2;
+                }
             },
             "+": {
                 "precedence": 2,
-                "direction": "left"
+                "direction": "left",
+                "fn": function(n1, n2){
+                    console.log("+:", n1 + "+" + n2);
+                    return n1+n2;
+                }
             },
             "-": {
                 "precedence": 2,
-                "direction": "left"
-            }
-        };
-        this.functions = {
-            '^': function(n1, n2) {
-                console.log("^:", n1 + "^" + n2);
-                return Math.pow(n1, n2);
-            },
-            '*': function(n1, n2){
-                console.log("*:", n1 + "*" + n2);
-                return n1*n2;
-            },
-            '/': function(n1, n2){
-                console.log("/:", n1 + "/" + n2);
-                return n1/n2;
-            },
-            '+': function(n1, n2){
-                console.log("+:", n1 + "+" + n2);
-                return n1+n2;
-            },
-            '-': function(n1, n2){
-                console.log("-:", n1 + "-" + n2);
-                return n1 - n2;
+                "direction": "left",
+                "fn": function(n1, n2){
+                    console.log("-:", n1 + "-" + n2);
+                    return n1 - n2;
+                }
             }
         };
     };
@@ -137,7 +135,7 @@
                     var n2 = arrTemp.pop(),
                         n1 = arrTemp.pop();
 
-                    answer = self.functions[token](n1, n2);
+                    answer = self.operators[token].fn(n1, n2);
                     arrTemp.push(answer);
                     arrTemp = arrTemp.concat(arr.slice(i+1));
                     break;
