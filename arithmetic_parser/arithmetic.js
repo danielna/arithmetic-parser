@@ -53,7 +53,7 @@
     };
 
     // Remove spaces
-    Interpreter.prototype.cleanString = function(str) {
+    Interpreter.prototype.tokenize = function(str) {
         var tokens = str.split("").filter(function(x) {
             return x.trim();
         });
@@ -149,7 +149,7 @@
     };
 
     Interpreter.prototype.go = function(str) {
-        var tokens = this.cleanString(str);
+        var tokens = this.tokenize(str);
         var outputQueue = this.toReversePolishNotation(tokens);
         return this.calculate(outputQueue);
     };

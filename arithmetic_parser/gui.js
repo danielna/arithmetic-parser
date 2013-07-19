@@ -19,7 +19,7 @@
         var pattern = getPattern();
         setOriginalPattern(pattern);
         var i = new Interpreter(pattern);
-        setRpn(i.toReversePolishNotation(i.cleanString(pattern)));
+        setRpn(i.toReversePolishNotation(i.tokenize(pattern)));
         setSum(i.go(pattern));
     };
 
