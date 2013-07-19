@@ -116,36 +116,29 @@
     };
 
     Interpreter.prototype.calculate = function(outputQueue) {
-        var self = this;
+        var arrTemp = [];
 
-        var parseRPN = function(arr) {
-            var arrTemp = [];
+        if (outputQueue.length === 1) {
+            return outputQueue[0];
+        }
 
-            if (arr.length === 1) {
-                return arr[0];
+        for (var i = 0; i < outputQueue.length; i++) {
+            var token = outputQueue[i];
+            if (typeof token !== "number") {
+
+                var n2 = arrTemp.pop(),
+                n1 = arrTemp.pop();
+
+                answer = this.operators[token].fn(n1, n2);
+                arrTemp.push(answer);
+                arrTemp = arrTemp.concat(outputQueue.slice(i+1));
+                break;
+
+            } else {
+                arrTemp.push(token);
             }
-
-            for (var i = 0; i < arr.length; i++) {
-                var token = arr[i];
-                if (typeof token !== "number") {
-
-                    var n2 = arrTemp.pop(),
-                        n1 = arrTemp.pop();
-
-                    answer = self.operators[token].fn(n1, n2);
-                    arrTemp.push(answer);
-                    arrTemp = arrTemp.concat(arr.slice(i+1));
-                    break;
-
-                } else {
-                    arrTemp.push(token);
-                }
-            }
-            return parseRPN(arrTemp);
-        };
-
-        return parseRPN(outputQueue);
-
+        }
+        return this.calculate(arrTemp);
     };
 
     Interpreter.prototype.go = function(str) {
