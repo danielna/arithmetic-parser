@@ -7,7 +7,7 @@
 
 (function(exports, document) {
 
-    var Interpreter = function(str) {
+    var Interpreter = function() {
         var self = this;
         this.str = str;
         this.tokens = [];
