@@ -15,7 +15,7 @@
     var pattern = getPattern();
     setOriginalPattern(pattern);
     var i = new Interpreter(pattern);
-    setSum(i.go());
+    setSum(i.go(pattern));
   };
 
   exports.gui = {};
