@@ -154,10 +154,10 @@
 
     };
 
-    Interpreter.prototype.go = function() {
-        this.cleanString();
-        this.interpret(this.tokens);
-        return this.calculate();
+    Interpreter.prototype.go = function(str) {
+        var tokens = this.cleanString(str);
+        var outputQueue = this.toReversePolishNotation(tokens);
+        return this.calculate(outputQueue);
     };
 
     exports.Interpreter = Interpreter;
