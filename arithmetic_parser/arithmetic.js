@@ -99,7 +99,10 @@
             } else if (this.operators[t]) {
                 var q = this.operators[stack[stack.length-1]];
                 var tObj = this.operators[t];
-                if (q && ((q.precedence > tObj.precedence) || ((q.precedence === tObj.precedence) && tObj.direction === "left"))) {
+                if (q &&
+                    ((q.precedence > tObj.precedence) ||
+                     ((q.precedence === tObj.precedence) &&
+                      tObj.direction === "left"))) {
                     outputQueue.push(stack.pop());
                     stack.push(t);
                 } else {
