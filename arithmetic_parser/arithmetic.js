@@ -83,7 +83,7 @@
         return this.tokens;
     };
 
-    Interpreter.prototype.interpret = function(tokens) {
+    Interpreter.prototype.toReversePolishNotation = function(tokens) {
         for (var i = 0; i < tokens.length; i++) {
             var t = tokens[i];
             if (typeof t === 'number') {
