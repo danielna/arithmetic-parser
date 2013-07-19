@@ -1,14 +1,23 @@
 ;(function(exports) {
+  var getPattern = function() {
+    return document.getElementById("formula").value;
+  };
 
-  exports.calculateFormula = function() {
-    var pattern = document.getElementById("formula").value;
-    document.getElementById("original").innerHTML = pattern;
-    // var pattern = "(1+2)^3-6+2";
-    var i = new Interpreter(pattern);
-    var sum = i.go();
-    // console.log("the answer to " + pattern + " is " + sum);
+  var setOriginalPattern = function(pattern) {
+    document.getElementById("original").innerHTML = pattern
+  };
+
+  var setSum = function(sum) {
     document.getElementById("sum").innerHTML = sum;
   };
 
+  var calculateFormula = function() {
+    var pattern = getPattern();
+    setOriginalPattern(pattern);
+    var i = new Interpreter(pattern);
+    setSum(i.go());
+  };
 
+  exports.gui = {};
+  exports.gui.calculateFormula = calculateFormula;
 }(this));
