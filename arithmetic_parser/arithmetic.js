@@ -84,38 +84,41 @@
     };
 
     Interpreter.prototype.toReversePolishNotation = function(tokens) {
+        var outputQueue = [];
+        var stack = [];
         for (var i = 0; i < tokens.length; i++) {
             var t = tokens[i];
             if (typeof t === 'number') {
-                this.outputQueue.push(t);
+                outputQueue.push(t);
             } else if (t === "(") {
-                this.stack.push(t);
+                stack.push(t);
             } else if (t === ")") {
-                for(var k = this.stack.length-1; k >= 0; k--){
-                    if (this.stack[k] === "(") {
-                        this.stack.pop();
+                for(var k = stack.length-1; k >= 0; k--){
+                    if (stack[k] === "(") {
+                        stack.pop();
                         break;
                     } else {
-                        this.outputQueue.push(this.stack.pop());
+                        outputQueue.push(stack.pop());
                     }
                 }
             } else if (this.operators[t]) {
-                var q = this.operators[this.stack[this.stack.length-1]];
+                var q = this.operators[stack[stack.length-1]];
                 var tObj = this.operators[t];
                 if (q && ((q.precedence > tObj.precedence) || ((q.precedence === tObj.precedence) && tObj.direction === "left"))) {
-                    this.outputQueue.push(this.stack.pop());
-                    this.stack.push(t);
+                    outputQueue.push(stack.pop());
+                    stack.push(t);
                 } else {
-                    this.stack.push(t);
+                    stack.push(t);
                 }
             }
         }
 
-        for (var j = 0; j <= this.stack.length; j++){
-            this.outputQueue.push(this.stack.pop());
+        for (var j = 0; j <= stack.length; j++){
+            outputQueue.push(stack.pop());
         }
 
         document.getElementById("RPN").innerHTML = this.outputQueue.join(" ").toString();
+        return outputQueue;
     };
 
     Interpreter.prototype.calculate = function() {
