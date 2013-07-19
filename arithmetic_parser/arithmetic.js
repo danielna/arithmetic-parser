@@ -9,10 +9,6 @@
 
     var Interpreter = function() {
         var self = this;
-        this.str = str;
-        this.tokens = [];
-        this.stack = [];
-        this.outputQueue = [];
         this.operators = {
             "^": {
                 "precedence": 4,
