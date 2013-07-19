@@ -113,7 +113,6 @@
             outputQueue.push(stack.pop());
         }
 
-        document.getElementById("RPN").innerHTML = this.outputQueue.join(" ").toString();
         return outputQueue;
     };
 
@@ -158,4 +157,4 @@
 
     exports.Interpreter = Interpreter;
 
-})(this, document);
+})(this);

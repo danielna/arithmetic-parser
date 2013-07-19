@@ -7,6 +7,10 @@
     document.getElementById("original").innerHTML = pattern
   };
 
+  var setRpn = function(rpn) {
+    document.getElementById("RPN").innerHTML = rpn;
+  };
+
   var setSum = function(sum) {
     document.getElementById("sum").innerHTML = sum;
   };
@@ -15,6 +19,7 @@
     var pattern = getPattern();
     setOriginalPattern(pattern);
     var i = new Interpreter(pattern);
+    setRpn(i.toReversePolishNotation(i.cleanString(pattern)));
     setSum(i.go(pattern));
   };
 
