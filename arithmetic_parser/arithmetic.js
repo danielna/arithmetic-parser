@@ -58,29 +58,29 @@
     };
 
     // Remove spaces
-    Interpreter.prototype.cleanString = function() {
-        this.tokens = this.str.split("").filter(function(x) {
+    Interpreter.prototype.cleanString = function(str) {
+        var tokens = str.split("").filter(function(x) {
             return x.trim();
         });
 
         // Collapse sequences of digits into one digit
         // i.e. 1,1,1 becomes 111
-        for (var i = this.tokens.length-1; i >= 0; i--){
+        for (var i = tokens.length-1; i >= 0; i--){
             if (i >= 1) {
-                var t = parseInt(this.tokens[i], 10) ? parseInt(this.tokens[i], 10) : "",
-                    t1 = parseInt(this.tokens[i-1], 10) ? parseInt(this.tokens[i-1], 10) : "";
+                var t = parseInt(tokens[i], 10) ? parseInt(tokens[i], 10) : "",
+                    t1 = parseInt(tokens[i-1], 10) ? parseInt(tokens[i-1], 10) : "";
                 if (typeof t == "number" && typeof t1 == "number") {
-                    this.tokens[i-1] =  t1.toString() + t.toString();
-                    this.tokens.splice(i, 1);
+                    tokens[i-1] =  t1.toString() + t.toString();
+                    tokens.splice(i, 1);
                 }
             }
         }
 
-        this.tokens = this.tokens.map(function(x){
+        tokens = tokens.map(function(x){
             var c = parseInt(x, 10);
             return c ? c : x;
         });
-        return this.tokens;
+        return tokens;
     };
 
     Interpreter.prototype.toReversePolishNotation = function(tokens) {
