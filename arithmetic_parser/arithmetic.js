@@ -121,7 +121,7 @@
         return outputQueue;
     };
 
-    Interpreter.prototype.calculate = function() {
+    Interpreter.prototype.calculate = function(outputQueue) {
         var self = this;
 
         var parseRPN = function(arr) {
@@ -150,7 +150,7 @@
             return parseRPN(arrTemp);
         };
 
-        return parseRPN(this.outputQueue);
+        return parseRPN(outputQueue);
 
     };
 
