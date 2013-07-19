@@ -71,11 +71,10 @@
             }
         }
 
-        tokens = tokens.map(function(x){
+        return tokens.map(function(x){
             var c = parseInt(x, 10);
             return c ? c : x;
         });
-        return tokens;
     };
 
     Interpreter.prototype.toReversePolishNotation = function(tokens) {
