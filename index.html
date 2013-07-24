@@ -1,0 +1,52 @@
+<!doctype html>
+<head>
+    <title>Awesome Arithmetic Parser</title>
+    <style>
+    body {
+        text-align: center;
+        background-color: #f2f2f2;
+        font-family: 'Helvetica Neue';
+    }
+    .big {
+        font-size: 24px;
+        font-weight: bold;
+    }
+    </style>
+</head>
+<body>
+    <h1>Awesome Arithmetic Parser</h1>
+    <p>Formulas can include parentheses, digits, and the following symbols:</p>
+    <p>^, *, /, +, -</p>
+    <p>i.e. (1+2)^3-6+2</p>
+    <p>I doubt there will ever be any error checking, so please make sure your formula is correct.  There is currently no support for negative numbers.</p>
+    <div>
+        <span class="label">Please type in an arithmetic formula here:</span>
+        <input type="text" id="formula"/>
+        <input type="submit" id="submit" onClick="gui.calculateFormula();"/>
+    </div>
+    <hr/>
+    <div>
+        <p>Original Formula:</p>
+        <p id="original" class="big"></p>
+    </div>
+    <hr/>
+    <div>
+        <p>
+            The Reverse Polish Notation of your supplied formula is:
+        </p>
+        <p id="RPN" class="big">
+        </p>
+    </div>
+    <hr/>
+    <div>
+        <p>
+            The sum is:
+        </p>
+        <p id="sum" class="big">
+        </p>
+    </div>
+    <img src="math.jpg" title="Just like this"/>
+    <script src="arithmetic.js"></script>
+    <script src="gui.js"></script>
+</body>
+</html>
