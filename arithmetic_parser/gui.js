@@ -4,7 +4,7 @@
     };
 
     var setOriginalPattern = function(pattern) {
-        document.getElementById("original").innerHTML = pattern
+        document.getElementById("original").innerHTML = pattern;
     };
 
     var setRpn = function(rpn) {
@@ -18,7 +18,7 @@
     var calculateFormula = function() {
         var pattern = getPattern();
         setOriginalPattern(pattern);
-        var i = new Interpreter(pattern);
+        var i = new Interpreter();
         setRpn(i.toReversePolishNotation(i.tokenize(pattern)));
         setSum(i.go(pattern));
     };
