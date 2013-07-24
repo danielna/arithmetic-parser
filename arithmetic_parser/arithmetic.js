@@ -143,8 +143,8 @@
         return this.calculate(arrTemp);
     };
 
-    Interpreter.prototype.go = function(str) {
-        var tokens = this.tokenize(str);
+    Interpreter.prototype.go = function(pattern) {
+        var tokens = this.tokenize(pattern);
         var outputQueue = this.toReversePolishNotation(tokens);
         return this.calculate(outputQueue);
     };
