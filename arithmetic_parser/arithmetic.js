@@ -110,7 +110,7 @@
             }
         }
 
-        for (var j = 0; j <= stack.length; j++){
+        for (var j = 0; j < stack.length; j++){
             outputQueue.push(stack.pop());
         }
 
